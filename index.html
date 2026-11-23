@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUMEN</title>
+<meta name="description" content="O LUMEN traduz as movimentações processuais em linguagem clara. Seu cliente entende cada passo sozinho e você recupera seu tempo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Spectral:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: sóbrio, jurídico, confiante — poucas palavras, muito ar
+   IDEA: uma página de autos com a tradução escrita ao lado, como nota de rodapé que finalmente explica
+   PICTURE: o cartão do app do cliente — termo técnico riscado acima, a frase clara embaixo, "de quem é a vez"
+   COLOUR and TYPE: identidade LUMEN — navy dominante, marfim de fundo, latão como acento; Spectral + Inter
+   LAYOUT: hero em faixa navy de ponta a ponta; seções marfim; fecho navy */
+:root{
+  color-scheme:light dark;
+  --navy:#15294B; --navy2:#1F3D66; --brass:#A67C3D; --brass2:#8A6530;
+  --bg:light-dark(#F5F3ED,#0F1A2E);
+  --paper:light-dark(#FFFFFF,#16233A);
+  --ink:light-dark(#15294B,#EDEAE2);
+  --muted:light-dark(#5A6578,#A9B1C0);
+  --line:light-dark(#E6E1D5,#2A3A55);
+  --tint:light-dark(#F4EDDC,#1D2C46);
+}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card-app{animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Spectral,Georgia,serif;font-weight:700;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(36px,5.2vw,56px)}
+h2{font-size:clamp(30px,3.6vw,42px)}
+h3{font-size:22px;line-height:1.2}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto}
+.band{padding:clamp(56px,7vw,104px) max(5vw,20px)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:var(--navy);color:#F5F3ED;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{display:flex;align-items:center;gap:28px;padding:14px max(5vw,20px);flex-wrap:wrap}
+.logo{font-family:Spectral,serif;font-weight:700;font-size:28px;letter-spacing:.5px;text-decoration:none;color:#F5F3ED;position:relative;line-height:1;padding:4px 10px 6px 6px}
+.logo::before,.logo::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--brass)}
+.logo::before{left:0;top:0}.logo::after{right:0;bottom:0}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap}
+.nav ul a{text-decoration:none;font-size:15px;color:#D6DCE6}
+.nav ul a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:4px;font:600 15px/1 Inter,sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn:focus-visible,.nav a:focus-visible,summary:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.btn-brass{background:var(--brass);color:#fff}.btn-brass:hover{background:var(--brass2)}
+.btn-ghost{border-color:rgba(245,243,237,.45);color:#F5F3ED}.btn-ghost:hover{border-color:#F5F3ED}
+
+/* hero */
+.hero{background:var(--navy);color:#F5F3ED;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(64px,7vw,104px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero p.lead{font-size:19px;color:#CBD3E0;max-width:34em;margin-top:22px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero small{display:block;margin-top:16px;color:#9FAAC0;font-size:14px}
+
+.stage{position:relative;display:flex;justify-content:center}
+.card-app{width:min(100%,380px);background:#F5F3ED;color:var(--navy);border-radius:22px;padding:26px 24px 24px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);animation:rise 1s ease-out both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card-app .proc{font-size:13px;color:#5A6578}
+.card-app .proc b{display:block;font-family:Spectral,serif;font-size:20px;color:var(--navy);margin-bottom:2px}
+.tech{margin-top:20px;padding:12px 14px;border:1px dashed #C9BFA8;border-radius:8px;font-size:14px;color:#7A8394}
+.tech s{text-decoration-color:var(--brass);text-decoration-thickness:2px}
+.tech span{display:block;font-size:12px;letter-spacing:.2px;margin-bottom:4px}
+.now{margin-top:14px;background:var(--navy);color:#F5F3ED;border-radius:12px;padding:18px}
+.now .k{font-size:12px;color:#D9B97A;font-weight:600}
+.now p{font-family:Spectral,serif;font-size:21px;line-height:1.35;margin-top:6px}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.meta div{font-size:13px;color:#5A6578}
+.meta b{display:block;font-size:15px;color:var(--navy)}
+.stamp{position:absolute;z-index:2;right:max(0px,calc(50% - 230px));top:-14px;background:var(--brass);color:#fff;font:600 13px/1 Inter;padding:9px 12px;border-radius:999px;box-shadow:0 8px 20px -8px rgba(0,0,0,.5)}
+
+/* problema */
+.problem .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.quote{font-family:Spectral,serif;font-style:italic;font-size:clamp(28px,3.4vw,40px);line-height:1.15;color:var(--ink)}
+.quote + p{margin-top:18px;color:var(--muted);max-width:30em}
+.pains{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.pains li{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.pains li:last-child{border-bottom:0;padding-bottom:0}
+.pains b{display:block;font-size:18px}
+.pains span{color:var(--muted)}
+
+/* como funciona */
+.how{background:var(--paper)}
+.how header{max-width:40em}
+.how header p{color:var(--muted);margin-top:14px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:48px;counter-reset:s}
+.step{border-top:2px solid var(--navy);padding-top:22px}
+:root[data-theme=dark] .step,.step{border-top-color:var(--ink)}
+.step .ic{width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;margin-bottom:16px;color:var(--brass2)}
+.step p{color:var(--muted);margin-top:10px}
+.step .note{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:var(--brass2)}
+
+/* para quem */
+.who .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:40px}
+.who-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:32px}
+.who-card .tag{font-size:14px;font-weight:600;color:var(--brass2)}
+.who-card h3{margin-top:8px}
+.who-card ul{margin:18px 0 0;padding-left:20px;color:var(--muted)}
+.who-card li+li{margin-top:8px}
+
+/* confiança */
+.trust{background:var(--navy);color:#F5F3ED}
+.trust header p{color:#CBD3E0;margin-top:14px;max-width:38em}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:44px}
+.grid4 div{border-left:1px solid rgba(245,243,237,.18);padding-left:20px}
+.grid4 b{display:block;font-family:Spectral,serif;font-size:21px;line-height:1.25}
+.grid4 p{color:#B9C3D4;font-size:15px;margin-top:8px}
+
+/* planos */
+.plans .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:40px;max-width:900px}
+.plan{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:32px;display:flex;flex-direction:column}
+.plan.hl{border-color:var(--brass)}
+.plan h3{font-size:26px}
+.plan .sub{color:var(--muted);margin-top:6px}
+.plan ul{margin:22px 0 28px;padding-left:20px;color:var(--ink)}
+.plan li+li{margin-top:8px}
+.plan .btn{margin-top:auto;align-self:flex-start}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy2)}
+:root[data-theme=dark] .btn-navy{background:#F5F3ED;color:var(--navy)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .btn-navy{background:#F5F3ED;color:var(--navy)}}
+
+/* faq */
+.faq{background:var(--paper)}
+.faq .list{max-width:820px;margin-top:32px}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:Spectral,serif;font-size:26px;line-height:1;color:var(--brass2)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:12px;max-width:44em}
+
+/* fecho */
+.close{background:var(--navy);color:#F5F3ED;text-align:center}
+.close p{color:#CBD3E0;margin:16px auto 0;max-width:34em}
+.close .btn{margin-top:30px}
+footer{background:#0E1C34;color:#9FAAC0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:28px max(5vw,20px)}
+footer a{color:#D6DCE6}
+
+@media (max-width:900px){
+  .hero .wrap,.problem .wrap{grid-template-columns:minmax(0,1fr)}
+  .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stamp{right:6px}
+}
+@media (max-width:640px){
+  .nav ul{display:none}
+  .nav .btn{margin-left:auto;min-height:40px;padding:0 16px}
+  .steps,.who .wrap,.plans .grid,.grid4{grid-template-columns:minmax(0,1fr)}
+  body{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="LUMEN, início">LUMEN</a>
+    <ul>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#para-quem">Para quem</a></li>
+      <li><a href="#seguranca">Segurança</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#duvidas">Dúvidas</a></li>
+    </ul>
+    <a class="btn btn-brass" href="#planos">Começar grátis</a>
+  </div>
+</nav>
+
+<header class="hero band" id="topo">
+  <div class="wrap">
+    <div>
+      <h1>Seu cliente entende. Você recupera seu tempo.</h1>
+      <p class="lead">O LUMEN traduz as movimentações do processo em linguagem clara. Você escreve uma vez, revisa e publica; o cliente acompanha cada passo pelo app, sem precisar ligar.</p>
+      <div class="ctas">
+        <a class="btn btn-brass" href="#planos">Começar grátis</a>
+        <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
+      </div>
+      <small>Grátis até 5 processos ativos.</small>
+    </div>
+    <div class="stage" aria-label="Exemplo da tela do cliente no app">
+      <span class="stamp">Publicado pela advogada</span>
+      <div class="card-app">
+        <div class="proc"><b>Ação de indenização</b>Dra. Sofia D. D. Massaro · Massaro Advocacia</div>
+        <div class="tech"><span>No processo</span><s>Conclusos para despacho</s></div>
+        <div class="now">
+          <div class="k">Agora</div>
+          <p>O processo está com o juiz, aguardando a próxima decisão.</p>
+        </div>
+        <div class="meta">
+          <div>De quem é a vez<b>Juiz</b></div>
+          <div>Próximo passo<b>Decisão do juiz</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="problem band" aria-labelledby="t-problema">
+  <div class="wrap">
+    <div>
+      <h2 id="t-problema" class="quote">“Doutora, o que quer dizer ‘conclusos para despacho’?”</h2>
+      <p>O andamento do processo é escrito para quem é da área. Para o cliente, cada movimentação vira uma dúvida, e cada dúvida vira uma ligação.</p>
+    </div>
+    <ul class="pains">
+      <li><b>Horas que não entram na conta</b><span>A mesma explicação, repetida por telefone e mensagem.</span></li>
+      <li><b>Contato fora de hora e em vários canais</b><span>WhatsApp, e-mail, ligação: nada fica registrado num lugar só.</span></li>
+      <li><b>Cliente inseguro</b><span>Quem não entende o próprio processo sente que foi deixado de lado.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="how band" id="como-funciona" aria-labelledby="t-como">
+  <div class="wrap">
+    <header>
+      <h2 id="t-como">Você escreve uma vez. Seu cliente entende sozinho.</h2>
+      <p>Um painel web para o escritório e um app para o cliente, sincronizados.</p>
+    </header>
+    <div class="steps">
+      <article class="step">
+        <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg></div>
+        <h3>Registre a movimentação</h3>
+        <p>Copie o termo técnico do andamento, como ele consta no tribunal.</p>
+      </article>
+      <article class="step">
+        <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg></div>
+        <h3>Explique em linguagem clara</h3>
+        <p>Diga o que aconteceu, o que vem agora e de quem é a vez. Uma prévia mostra exatamente o que o cliente vai ler.</p>
+      </article>
+      <article class="step">
+        <div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Publique para o cliente</h3>
+        <p>Só a sua confirmação libera o texto. A atualização aparece no app na hora.</p>
+        <span class="note">Rascunhos ficam visíveis só para você.</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="who band" id="para-quem" aria-labelledby="t-quem">
+  <div class="wrap" style="display:block">
+    <h2 id="t-quem">Feito para quem atende pessoa física</h2>
+  </div>
+  <div class="wrap">
+    <div class="who-card">
+      <div class="tag">Para o escritório</div>
+      <h3>Advogado autônomo e escritório de pequeno porte</h3>
+      <ul>
+        <li>Menos tempo não faturável explicando andamento</li>
+        <li>Todas as atualizações e dúvidas num só lugar</li>
+        <li>Você revisa e assina tudo o que o cliente lê</li>
+      </ul>
+    </div>
+    <div class="who-card">
+      <div class="tag">Para o seu cliente</div>
+      <h3>Quem precisa entender o próprio processo</h3>
+      <ul>
+        <li>O que aconteceu, em palavras claras</li>
+        <li>O próximo passo e de quem é a vez</li>
+        <li>Dúvidas enviadas pelo app, ligadas ao processo</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="trust band" id="seguranca" aria-labelledby="t-seg">
+  <div class="wrap">
+    <header>
+      <h2 id="t-seg">A responsabilidade continua sua. O controle também.</h2>
+      <p>O LUMEN é uma ferramenta de relacionamento entre você e o seu próprio cliente.</p>
+    </header>
+    <div class="grid4">
+      <div><b>Nada publicado sem você</b><p>Toda atualização passa pela sua revisão e confirmação.</p></div>
+      <div><b>Cada cliente vê só o seu</b><p>Acesso isolado por escritório e por cliente, conforme a LGPD.</p></div>
+      <div><b>Histórico preservado</b><p>Correções geram nova versão, com autor, data e hora registrados.</p></div>
+      <div><b>Não é marketplace</b><p>Sem perfil público, ranking ou captação de clientes, em linha com o Provimento OAB 205/2021.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="plans band" id="planos" aria-labelledby="t-planos">
+  <div class="wrap">
+    <h2 id="t-planos">Comece sem custo</h2>
+    <div class="grid">
+      <article class="plan hl">
+        <h3>Gratuito</h3>
+        <p class="sub">Para experimentar com seus clientes.</p>
+        <ul>
+          <li>Até 5 processos ativos</li>
+          <li>Painel do escritório e app do cliente</li>
+          <li>Linha do tempo em linguagem clara</li>
+        </ul>
+        <a class="btn btn-brass" href="#duvidas">Criar conta grátis</a>
+      </article>
+      <article class="plan">
+        <h3>Assinatura mensal</h3>
+        <p class="sub">Por escritório, quando você passar de 5 processos.</p>
+        <ul>
+          <li>Processos além do limite gratuito</li>
+          <li>Canal de dúvidas ligado ao processo</li>
+          <li>Seus dados mantidos ao trocar de plano</li>
+        </ul>
+        <a class="btn btn-navy" href="#duvidas">Falar com a equipe</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="faq band" id="duvidas" aria-labelledby="t-faq">
+  <div class="wrap">
+    <h2 id="t-faq">Perguntas frequentes</h2>
+    <div class="list">
+      <details>
+        <summary>O LUMEN substitui o sistema do tribunal?</summary>
+        <p>Não. O andamento oficial continua no tribunal. O LUMEN explica esse andamento para o seu cliente, em linguagem clara.</p>
+      </details>
+      <details>
+        <summary>Quem escreve a tradução?</summary>
+        <p>Você. O editor ajuda a explicar o que aconteceu, o que vem agora e de quem é a vez, e mostra uma prévia do que o cliente vai ler antes de publicar.</p>
+      </details>
+      <details>
+        <summary>Meu cliente consegue ver os rascunhos?</summary>
+        <p>Não. Rascunhos ficam visíveis só para o escritório. O cliente vê apenas o que você publica.</p>
+      </details>
+      <details>
+        <summary>Como meu cliente entra no app?</summary>
+        <p>Você cadastra o cliente, vincula ao processo e envia um convite por e-mail com um código de primeiro acesso. Não existe autocadastro.</p>
+      </details>
+      <details>
+        <summary>O LUMEN divulga meu escritório ou indica clientes?</summary>
+        <p>Não. Não há perfil público, ranking nem intermediação de clientes. O LUMEN serve à relação entre você e quem já é seu cliente.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="close band" aria-labelledby="t-fim">
+  <div class="wrap">
+    <h2 id="t-fim">Não mostra o processo. Traduz.</h2>
+    <p>Comece com até 5 processos e veja quantas ligações deixam de acontecer.</p>
+    <a class="btn btn-brass" href="#planos">Começar grátis</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>LUMEN · Projeto Multidisciplinar Integrador · ADS UNICESUSC</span>
+    <a href="https://github.com/sofiamassaro/lumen">github.com/sofiamassaro/lumen</a>
+  </div>
+</footer>
+
+</body>
+</html>
